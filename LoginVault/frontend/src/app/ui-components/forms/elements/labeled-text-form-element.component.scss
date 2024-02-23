@@ -1,0 +1,62 @@
+@import "../../../../assets/scss/colors";
+@import "../../../../assets/scss/fonts";
+@import "../../../../assets/scss/layout";
+@import "../../../../assets/scss/animations";
+
+.input-group {
+  color: $secondary;
+  height: $form-control-height;
+  font-size: $regular-font-size;
+
+  input {
+    padding: .25rem;
+    font-size: inherit;
+    height: inherit;
+    color: inherit;
+    border-color: $tertiary;
+    background-color: $tertiary;
+    transition: $short-ease;
+
+    &:hover, &:focus {
+      color: unset;
+      background-color: $line-color;
+    }
+  }
+
+  .input-group-text {
+    font-size: inherit;
+    height: inherit;
+    color: inherit;
+    border-color: $line-color;
+    background-color: $line-color;
+  }
+}
+
+.label-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .25rem;
+}
+
+.label {
+  font-size: $regular-font-size;
+  padding: .21em .7em;
+  margin: .25em;
+  border-radius: 10em;
+  background-color: $line-color;
+  cursor: default;
+  max-width: 14em;
+  display: flex;
+  align-items: center;
+
+  span {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+i {
+  cursor: pointer;
+}

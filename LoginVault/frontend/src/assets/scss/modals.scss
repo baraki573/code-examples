@@ -1,0 +1,59 @@
+@import "colors";
+@import "layout";
+
+:host {
+  background-color: $primary;
+  color: $secondary;
+  border: solid .15em $line-color;
+  box-shadow: 0 0 .5em .01em $primary;
+
+  .modal-header {
+    border-color: $line-color;
+  }
+
+  .modal-body {
+    font-size: 1.1em;
+
+    span {
+      vertical-align: top;
+      display: inline-block;
+      max-width: 8.9em;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .modal-footer {
+    border-color: $line-color;
+
+    .regular-button {
+      font-size: 1em;
+    }
+
+    .delete-button {
+      border-color: $danger-color;
+
+      &:hover, &.highlight {
+        background-color: $danger-color;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: .3em;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: .3em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $line-color;
+  border-radius: .3em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $tertiary;
+}

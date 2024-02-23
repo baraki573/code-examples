@@ -1,0 +1,73 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/fonts";
+@import "../../assets/scss/layout";
+@import "../../assets/scss/animations";
+
+.split-button {
+  display: flex;
+  color: transparent;
+
+  app-image-view {
+    margin-right: .5em;
+    width: $image-size-regular;
+    height: $image-size-regular;
+  }
+
+  &:hover button:nth-child(2) {
+    color: $line-color;
+    -webkit-text-stroke: 0.02em $secondary;
+  }
+
+  // Main button
+  button:first-child {
+    color: $secondary;
+    text-align: left;
+    border: transparent;
+    background: transparent;
+    padding: 0;
+    font-size: $regular-font-size;
+
+    &:hover, .selected {
+      font-weight: bold;
+    }
+
+    .button-face {
+      padding: .5rem .75rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 4.75em;
+
+      .image-button-label {
+        flex-grow: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 8em;
+      }
+    }
+  }
+
+  // Edit Button
+  button:nth-child(2) {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    padding: 0;
+    flex-grow: 1;
+    border-radius: .4em;
+    transition: $short-ease;
+
+    &:disabled {
+      color: $secondary;
+      -webkit-text-stroke: unset;
+    }
+
+    &:enabled:hover {
+      color: $secondary;
+      background-color: $line-color;
+      font-weight: bold;
+      -webkit-text-stroke: unset;
+    }
+  }
+}

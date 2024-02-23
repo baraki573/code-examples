@@ -1,0 +1,30 @@
+<label [for]="elementId" class="regular-text"> {{ labelName }} </label>
+<div ngbDropdown class="dropdown" placement="bottom-right top-right auto" (openChange)="onOpenChange($event)">
+  <button ngbDropdownToggle [id]="elementId" class="btn" type="button" [disabled]="form.disabled">
+    <span>{{ form.value.length === 0 ? "---" : form.value }}</span>
+  </button>
+  <ul ngbDropdownMenu>
+    <div class="d-flex align-items-center px-2">
+      <input [formControl]="searchForm" placeholder="Suchen">
+      <i class="fa-solid fa-magnifying-glass fa-sm ms-1"></i>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="dropdown-items">
+      <ng-container *ngIf="filteredItems$ | async as filteredItems; else emptyItems">
+        <ng-container *ngFor="let item of filteredItems">
+          <li ngbDropdownItem [class.active]="form.value === item" (click)="form.setValue(item)">
+            {{ item }}
+          </li>
+        </ng-container>
+      </ng-container>
+      <ng-template #emptyItems>
+        <span class="px-2"> Nichts gefunden </span>
+      </ng-template>
+    </div>
+  </ul>
+</div>
+<div class="invalid-feedback">
+  <ng-container *ngIf="(form.touched || form.dirty) && form.hasError('trimmedRequired')">
+    {{ labelName }} darf nicht leer sein
+  </ng-container>
+</div>

@@ -1,0 +1,5 @@
+<ng-container *ngIf="data$ | async as data">
+  <app-login-form [entity]="data.login" [categories]="data.categories" [close]="close.bind(this)"
+                  (submitted)="onSubmit($event)" [isViewMode]="data.isViewMode">
+  </app-login-form>
+</ng-container>

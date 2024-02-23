@@ -1,0 +1,13 @@
+$top-area-height: 7vh;
+$top-area-min-height: 2.8125em;
+$top-area-max-height: 3.75em;
+
+$element-list-width: 31%;
+$element-list-min-width: 10rem;
+$element-list-max-width: 15rem;
+
+$image-size-regular: 2.3em;
+$image-size-bigger: clamp(3rem, 9vw, 5rem);
+
+$form-control-height: 2.375em;
+$error-feedback-height: clamp(1.2em, 1.9vw, 1.3em);

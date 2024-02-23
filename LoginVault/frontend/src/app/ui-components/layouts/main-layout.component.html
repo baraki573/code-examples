@@ -1,0 +1,15 @@
+<div class="container-fluid vh-100 d-flex flex-column">
+  <div class="row top-area">
+    <div class="col p-0">
+      <app-top-navigation></app-top-navigation>
+    </div>
+  </div>
+  <div class="row lower-area flex-grow-1 flex-nowrap">
+    <div class="col-1 left-side">
+      <app-side-navigation></app-side-navigation>
+    </div>
+    <div class="col">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<app-content-layout [entities$]="logins$" [elementTemplate]="buttonTemplate" emptyText="Logins">
+  <div header>
+    <ng-container *ngIf="categoryName$ | async as categoryName; else loginButton">
+      <div class="category-header">
+        {{ categoryName }}
+      </div>
+      <div class="center-flex">
+        <a routerLink="/categories">
+          <i class="fa-solid fa-arrow-left text-secondary"></i>
+        </a>
+        <ng-container *ngTemplateOutlet="loginButton"></ng-container>
+      </div>
+    </ng-container>
+    <ng-template #loginButton>
+      <button class="regular-button" type="button" routerLink="new" queryParamsHandling="merge"
+              [disabled]="location.pathname.endsWith('new')">
+        <i class="fa-solid fa-add pe-1"></i>
+        Login eintragen
+      </button>
+    </ng-template>
+  </div>
+  <ng-template #buttonTemplate let-name="name" let-url="url" let-id="id" let-isEdited="isEdited" let-imageKey="imageKey">
+    <app-image-button navigateTo="{{id}}" navigateToEdit="{{id}}/edit" [isSelected]=isEdited [imageKey]="imageKey">
+      {{ name }} <br>
+      {{ url | shorturl }}
+    </app-image-button>
+  </ng-template>
+</app-content-layout>

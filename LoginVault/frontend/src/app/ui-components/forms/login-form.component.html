@@ -1,0 +1,79 @@
+<form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
+  <div class="form-elements">
+    <div>
+      <app-image-view [imageKey]="form.controls.imageKey.value" (click)="openImageModal()"
+                      [extraClass]="form.disabled ? 'disabled-image-view' : 'hover-color-transparent'">
+        <div class="image-overlay" [class.d-none]="form.disabled">
+          <i class="fa-solid fa-pen"></i>
+        </div>
+      </app-image-view>
+    </div>
+    <ng-container *ngTemplateOutlet="inputForm;
+                   context: {labelName: 'URL', control: form.controls.url}">
+    </ng-container>
+  </div>
+  <div class="form-elements">
+    <ng-container *ngTemplateOutlet="inputForm;
+                   context: {labelName: 'Name', control: form.controls.name, inputChange}">
+    </ng-container>
+    <app-dropdown-form-element labelName="Kategorie" [items]="categoryNames" [form]="form.controls.category">
+    </app-dropdown-form-element>
+  </div>
+  <div class="form-elements align-items-stretch">
+    <div class="mt-1 d-flex flex-column">
+      <label for="descriptionInput" class="regular-text"> Beschreibung (optional) </label>
+      <textarea id="descriptionInput" class="form-control text-nowrap" formControlName="description">
+      </textarea>
+    </div>
+    <div class="second-column">
+      <ng-container *ngTemplateOutlet="inputForm;
+                     context: {labelName: 'Username', control: form.controls.username}">
+      </ng-container>
+      <ng-container *ngTemplateOutlet="inputForm;
+                     context: {labelName: 'Passwort', control: form.controls.password}">
+      </ng-container>
+    </div>
+  </div>
+  <div class="form-elements">
+    <ng-container *ngIf="form.enabled || form.controls.hashtags.value.length > 0">
+      <app-labeled-text-form-element class="w-100" labelName="Hashtags (optional)" prefix="#"
+                                     [form]="form.controls.hashtags">
+      </app-labeled-text-form-element>
+    </ng-container>
+  </div>
+  <div class="button-bar">
+    <ng-container *ngTemplateOutlet="form.enabled ? submitButton : deleteButton"></ng-container>
+    <button type="button" class="regular-button ms-1" (click)="close()">
+      {{ form.enabled ? "Abbrechen" : "Zurück" }}
+    </button>
+  </div>
+</form>
+
+<ng-template #inputForm let-labelName="labelName" let-control="control" let-inputChange="inputChange">
+  <div class="mt-1">
+    <label for="{{labelName | lowercase}}Input" class="regular-text"> {{ labelName }} </label>
+    <input id="{{labelName | lowercase}}Input" class="form-control" [class.is-invalid]="isInvalid(control)"
+           [formControl]="control" (input)="inputChange?.call(this)">
+    <div class="invalid-feedback">
+      <ng-container *ngIf="hasError(control, 'trimmedRequired')">
+        {{ labelName }} darf nicht leer sein
+      </ng-container>
+      <ng-container *ngIf="hasError(control, 'urlTaken')">
+        URL ist bereits vorhanden
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #submitButton>
+  <button type="submit" class="regular-button me-1" (click)="onSubmit()"
+          [disabled]="form.invalid || form.pending || form.disabled">
+    {{ entity.id === 0 ? "Erstellen" : "Speichern" }}
+  </button>
+</ng-template>
+
+<ng-template #deleteButton>
+  <button type="submit" class="regular-button me-1" (click)="openDeleteModal()">
+    Löschen
+  </button>
+</ng-template>

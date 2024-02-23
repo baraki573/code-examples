@@ -1,0 +1,51 @@
+@import "../../../assets/scss/forms";
+@import "../../../assets/scss/fonts";
+@import "../../../assets/scss/colors";
+
+.form-elements {
+  padding: 0 .5rem;
+  width: 100%;
+  max-width: 40rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  & > * {
+    width: 42%;
+    min-width: 10.12rem;
+    flex-grow: 1;
+    padding: 0 .25rem;
+
+    app-image-view {
+      margin: auto;
+    }
+
+    @media (min-width: 36em) {
+      &:nth-child(1) {
+        flex-grow: 0;
+        margin-right: auto;
+      }
+
+      &:nth-child(2) {
+        flex-grow: 0;
+        margin-left: auto;
+      }
+    }
+  }
+
+  app-image-view {
+    display: flex;
+    justify-content: center;
+  }
+
+  .second-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .text-nowrap {
+    overflow: hidden;
+  }
+}

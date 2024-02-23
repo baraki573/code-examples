@@ -1,0 +1,41 @@
+<div class="modal-header py-2">
+  <h4 class="modal-title"> Bild auswählen oder hochladen </h4>
+</div>
+<div class="modal-body">
+  <ng-container *ngIf="imageKeys$ | async as imageKeys; else emptyKeys">
+    <ng-container *ngFor="let imageKey of imageKeys">
+      <app-image-view [imageKey]="imageKey" (click)="onImageSelected(imageKey)">
+        <div class="image-overlay" [class.danger-hover]="isDeleting">
+          <i class="fa-solid fa-trash" [class.d-none]="!isDeleting"></i>
+        </div>
+      </app-image-view>
+    </ng-container>
+  </ng-container>
+  <ng-template #emptyKeys>
+    <ng-container *ngIf="isDeleting">
+      <div class="mx-auto"> Es sind keine zu löschenden Bilder vorhanden. </div>
+    </ng-container>
+  </ng-template>
+  <ng-container *ngIf="!isDeleting">
+    <div class="image-background image-overlay" (click)="activeModal.close(DEFAULT_KEY)">
+      <i class="fa-solid fa-file-image"></i>
+    </div>
+    <div class="image-background image-overlay" (click)="fileInput.click()">
+      <input #fileInput type="file" (change)="onFileSelected(fileInput)" accept="image/png,image/jpeg,image/gif">
+      <i class="fa-solid fa-add"></i>
+    </div>
+  </ng-container>
+</div>
+<div class="invalid-feedback">
+  <ng-container *ngIf="imageForm.hasError('imageTooLarge')">
+    Das Bild ist zu groß. Maximal erlaubte Größe: {{environment.file_limit_pretty}}
+  </ng-container>
+</div>
+<div class="modal-footer py-1">
+  <button class="regular-button delete-button" [class.highlight]="isDeleting" (click)="isDeleting = !isDeleting">
+    Bild löschen
+  </button>
+  <button class="regular-button" (click)="activeModal.dismiss('dismiss')">
+    Abbrechen
+  </button>
+</div>

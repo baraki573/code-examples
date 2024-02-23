@@ -1,0 +1,93 @@
+@import "../../../../assets/scss/forms";
+@import "../../../../assets/scss/animations";
+
+.dropdown {
+  color: $secondary;
+  font-size: $regular-font-size;;
+
+  button {
+    font-size: inherit;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: $form-control-height;
+    color: inherit;
+    background-color: $tertiary;
+
+    &:disabled {
+      padding: .25rem;
+      text-align: left;
+      opacity: 1;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &:hover, &:disabled {
+      color: inherit;
+      background-color: $line-color;
+      border-color: $tertiary;
+    }
+
+    & > span {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  ul {
+    font-size: inherit;
+    color: inherit;
+    background-color: $tertiary;
+    border-color: $line-color;
+    border-width: .15em;
+    box-shadow: 0 0 .5em .01em $primary;
+    max-width: calc(100% + .75em);
+
+    input {
+      flex-grow: 1;
+      background-color: transparent;
+      color: inherit;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .dropdown-divider {
+      border-color: $line-color;
+    }
+
+    .dropdown-items {
+      overflow-y: auto;
+      max-height: 10em;
+
+      li {
+        color: inherit;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+        padding: .5em .5em;
+        transition: $short-ease;
+
+        &:hover {
+          background-color: $line-color;
+        }
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: .4em;
+  background-color: inherit;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $line-color;
+  border-radius: .3em;
+  cursor: default;
+}

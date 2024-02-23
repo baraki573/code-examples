@@ -1,0 +1,23 @@
+@import "../../../assets/scss/colors";
+@import "../../../assets/scss/layout";
+
+.top-area {
+  height: clamp($top-area-min-height, $top-area-height, $top-area-max-height);
+  border-bottom: $border-line;
+}
+
+.lower-area {
+  height: clamp(calc(100vh - $top-area-max-height), calc(100vh - $top-area-height), calc(100vh - $top-area-min-height));
+
+  div {
+    padding: 0;
+    height: 100%;
+  }
+}
+
+.left-side {
+  max-width: 9em;
+  min-width: 4.5em;
+  border-right: $border-line;
+  overflow: hidden;
+}

@@ -1,0 +1,14 @@
+<div class="split-button">
+  <button [routerLink]="navigateTo" [queryParams]="params" queryParamsHandling="merge"
+          [disabled]="isButtonDisabled(navigateTo)">
+    <div [@selectedBorder]="isSelected" class="button-face">
+      <app-image-view [imageKey]="imageKey"></app-image-view>
+      <div [class.selected]=isButtonDisabled(navigateTo) class="image-button-label">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </button>
+  <button [routerLink]="navigateToEdit" queryParamsHandling="merge" [disabled]="isButtonDisabled(navigateToEdit)">
+    <i class="fa-solid fa-pen smaller-text"></i>
+  </button>
+</div>

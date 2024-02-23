@@ -1,0 +1,16 @@
+@import "../../assets/scss/fonts";
+
+.category-header {
+  font-size: $header-font-size;
+  font-weight: bold;
+  overflow: hidden;
+  width: 8em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto;
+}
+
+a {
+  margin: 0 clamp(.25rem, .5vw, .5rem);
+  font-size: $regular-font-size;
+}

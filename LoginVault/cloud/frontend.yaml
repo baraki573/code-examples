@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: loginvault/frontend
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d/default.conf
+              name: nginx-conf
+              subPath: nginx.conf
+              readOnly: true
+          envFrom:
+            - configMapRef:
+                name: environment
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 1080
+      targetPort: 80

@@ -1,0 +1,24 @@
+<label [for]="elementId" class="regular-text"> {{ labelName }} </label>
+<ng-container *ngIf="form.enabled">
+  <div class="input-group">
+    <ng-container *ngIf="prefix.length > 0">
+      <label class="input-group-text" [for]="elementId"> {{ prefix }} </label>
+    </ng-container>
+    <input [id]="elementId" class="form-control" [formControl]="newLabel" (keydown.enter)="addNewLabel()">
+    <i class="input-group-text fa-solid fa-add fa-2xs" (click)="addNewLabel()"></i>
+  </div>
+</ng-container>
+<div class="label-list">
+  <ng-container *ngFor="let label of form.value">
+    <ng-container *ngTemplateOutlet="labelTemplate; context: {$implicit: label}"></ng-container>
+  </ng-container>
+</div>
+
+<ng-template #labelTemplate let-text>
+  <div class="label">
+    <span> {{ prefix }}{{ text }} </span>
+    <ng-container *ngIf="form.enabled">
+      <i class="ms-1 fa-solid fa-x fa-xs" (click)="remove(text)"></i>
+    </ng-container>
+  </div>
+</ng-template>

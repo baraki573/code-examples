@@ -1,0 +1,64 @@
+@import "layout";
+@import "colors";
+@import "fonts";
+@import "animations";
+
+form {
+  min-height: 100%;
+  padding: .75rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+app-image-view {
+  width: $image-size-bigger;
+  height: $image-size-bigger;
+}
+
+.regular-button {
+  width: 18vw;
+  max-width: 10em;
+}
+
+.button-bar {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: clamp(9em, 30vw, 23em);
+}
+
+textarea, input {
+  padding: .25rem;
+  font-size: $regular-font-size;
+  resize: none;
+  color: $secondary;
+  border-color: $tertiary;
+  background-color: $tertiary;
+  transition: background-color $short-ease;
+
+  &:hover, &:focus, &:disabled {
+    color: unset;
+    background-color: $line-color;
+  }
+}
+
+input {
+  height: $form-control-height
+}
+
+textarea {
+  flex-grow: 1;
+  min-height: calc(3*$form-control-height);
+  margin-bottom: calc($error-feedback-height + .25em);
+}
+
+.invalid-feedback {
+  margin-top: .25em;
+  font-size: $regular-font-size;
+  display: block;
+  padding-left: .25em;
+  height: $error-feedback-height;
+  transition: $short-ease;
+}

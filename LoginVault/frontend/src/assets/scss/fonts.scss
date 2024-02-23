@@ -1,0 +1,10 @@
+// Relying on Window Width
+$regular-font-size: clamp(.65em, 1.81vw, 1em);
+$smaller-font-size: clamp(.4875em, 1.3575vw, .75em);
+$bigger-font-size: clamp(.8em, 2.5vw, 1.3em);
+$header-font-size: clamp(1.1em, 3vw, 1.4em);
+$fine-print-font-size: clamp(.65em, .7vw, .8em);
+
+// Relying on Window Height
+$brand-font-size: clamp(1.1em, 3vh, 2em);
+$top-nav-font-size: clamp(.75em, 2vh, 1em);

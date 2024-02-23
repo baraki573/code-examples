@@ -1,0 +1,13 @@
+<ng-container *ngIf="entities$ | async as entities; else emptyEntities">
+  <ng-container *ngFor="let entity of entities; index as i; trackBy: trackBy">
+    <ng-container *ngIf="i > 0">
+      <div class="border-division"></div>
+    </ng-container>
+    <ng-container *ngTemplateOutlet="elementTemplate; context: entity"></ng-container>
+  </ng-container>
+</ng-container>
+<ng-template #emptyEntities>
+  <div class="p-2 text-center regular-text">
+    Es konnten keine {{ emptyText }} gefunden werden.
+  </div>
+</ng-template>
